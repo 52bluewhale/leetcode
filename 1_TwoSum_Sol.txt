@@ -1,0 +1,150 @@
+
+# Two Sum Problem Tutorial (LeetCode)
+
+## 1. Problem Statement
+Given an array of integers `nums` and an integer `target`, return indices of the two numbers such that they add up to `target`.
+
+You may assume that each input would have exactly one solution, and you may not use the same element twice.
+Return the answer in any order.
+
+---
+
+## 2. Analyze Inputs and Outputs
+
+### Inputs
+- `nums`: An array of integers (e.g., `[2, 7, 11, 15]`).
+- `target`: An integer (e.g., `9`).
+
+### Outputs
+- Indices `[i, j]` such that `nums[i] + nums[j] == target`.
+- Indices must be different (`i != j`).
+- Only one valid pair exists per input.
+
+### Example
+Input: `nums = [2, 7, 11, 15]`, `target = 9`
+Output: `[0, 1]` (because `nums[0] + nums[1] = 2 + 7 = 9`)
+
+---
+
+## 3. What Should You Do?
+
+1. **Understand the Problem:**
+   - Read the statement carefully. What is being asked?
+   - Identify constraints (no duplicate use, exactly one solution).
+
+2. **Think About Approaches:**
+   - Brute force: Try all pairs.
+   - Optimized: Use a hash map to store seen numbers and their indices.
+
+3. **Write Pseudocode:**
+   - Helps clarify your logic before coding.
+
+4. **Implement the Solution:**
+   - Start with brute force for clarity.
+   - Move to optimized for efficiency.
+
+5. **Test Your Code:**
+   - Use sample and edge cases.
+
+6. **Analyze Complexity:**
+   - Brute force: O(n^2)
+   - Hash map: O(n)
+
+---
+
+## 4. How Should You Think? (Improving Programming Skills)
+
+- **Break Down the Problem:**
+  - What are the inputs? What is the output?
+  - Can you solve it by hand for small examples?
+
+- **Start Simple:**
+  - Write the most basic solution first (brute force).
+  - Understand why it works and why it is slow.
+
+- **Look for Patterns:**
+  - Is there a way to avoid repeated work?
+  - Can you use extra space (hash map) to speed up lookup?
+
+- **Practice Writing Pseudocode:**
+  - This helps you organize your thoughts and spot mistakes early.
+
+- **Test Thoroughly:**
+  - Try different cases: negative numbers, zeros, large arrays.
+
+- **Reflect on Efficiency:**
+  - How does your solution scale as input size grows?
+  - Can you improve it?
+
+- **Learn from Others:**
+  - Read other solutions and explanations.
+  - Try to re-implement them yourself.
+
+---
+
+## 5. Step-by-Step Solution
+
+### Step 1: Brute Force Approach
+Check every pair of numbers.
+For each index `i`, check every index `j > i`.
+If `nums[i] + nums[j] == target`, return `[i, j]`.
+Time Complexity: O(n^2)
+
+#### Example:
+```
+nums = [2, 7, 11, 15], target = 9
+Check pairs:
+(2,7): 2+7=9 → return [0,1]
+```
+
+### Step 2: Optimized Approach (Hash Map)
+Use a hash map to store numbers and their indices as you iterate.
+For each number `x`, check if `target - x` exists in the map.
+If yes, return indices.
+Time Complexity: O(n)
+
+#### Example:
+```
+nums = [2, 7, 11, 15], target = 9
+Create empty map.
+Iterate:
+  i=0, x=2: map={}, store 2:0
+  i=1, x=7: target-x=2, 2 in map → return [0,1]
+```
+
+---
+
+## 6. C Implementation Tips
+- Use a struct for hash map (or simple array for small inputs).
+- Iterate through `nums`, check if complement exists, else store current value.
+- Handle memory allocation and freeing properly.
+
+---
+
+## 7. Edge Cases
+- Only one solution exists.
+- No duplicate use of the same element.
+- Negative numbers and zero are allowed.
+- Array may be small or large.
+
+---
+
+## 8. Summary
+- Brute force: easy, slow.
+- Hash map: fast, efficient.
+- Always check for complement before storing current value.
+
+---
+
+## 9. Practice and Skill Improvement
+- Try with different inputs.
+- Implement both approaches to understand efficiency.
+- Write your own test cases.
+- Read and understand other people's solutions.
+- Reflect on what you learned and how you can apply it to other problems.
+
+---
+
+## 10. References
+- LeetCode Problem: https://leetcode.com/problems/two-sum/description/
+- C Hash Map Example: https://leetcode.com/problems/two-sum/solutions/2469220/c-hashmap-solution/

@@ -1,0 +1,150 @@
+# Add Two Numbers Problem Tutorial (LeetCode)
+
+## 1. Problem Statement
+Given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order, and each node contains a single digit. Add the two numbers and return the sum as a linked list.
+
+- Each input list represents a number in reverse order.
+- Each node contains a single digit.
+- Return the result as a linked list in reverse order.
+
+---
+
+## 2. Analyze Inputs and Outputs
+
+### Inputs
+- `l1`: First linked list (e.g., 2 → 4 → 3 represents 342)
+- `l2`: Second linked list (e.g., 5 → 6 → 4 represents 465)
+
+### Outputs
+- A linked list representing the sum (e.g., 7 → 0 → 8 represents 807)
+
+### Example
+Input: l1 = [2,4,3], l2 = [5,6,4]
+Output: [7,0,8]
+Explanation: 342 + 465 = 807
+
+---
+
+## 3. What Should You Do?
+
+1. **Understand the Problem:**
+   - Each list node is a digit, stored in reverse order.
+   - You need to add corresponding digits, handling carry.
+
+2. **Think About Approaches:**
+   - Traverse both lists simultaneously.
+   - Add digits and carry, create new nodes for result.
+   - If one list is shorter, treat missing digits as 0.
+
+3. **Write Pseudocode:**
+   - Helps clarify your logic before coding.
+
+4. **Implement the Solution:**
+   - Use a dummy head for the result list.
+   - Traverse both lists, add digits, handle carry.
+   - At the end, if carry remains, add a new node.
+
+5. **Test Your Code:**
+   - Use sample and edge cases.
+
+6. **Analyze Complexity:**
+   - Time Complexity: O(max(m, n)), where m and n are lengths of the lists.
+   - Space Complexity: O(max(m, n))
+
+---
+
+## 4. How Should You Think? (Improving Programming Skills)
+
+- **Break Down the Problem:**
+  - What are the inputs? What is the output?
+  - Can you solve it by hand for small examples?
+
+- **Start Simple:**
+  - Write the most basic solution first.
+  - Understand why it works and why it is slow.
+
+- **Look for Patterns:**
+  - Is there a way to avoid repeated work?
+  - Can you use extra space (dummy node) to simplify code?
+
+- **Practice Writing Pseudocode:**
+  - This helps you organize your thoughts and spot mistakes early.
+
+- **Test Thoroughly:**
+  - Try different cases: lists of different lengths, carry at the end, all zeros.
+
+- **Reflect on Efficiency:**
+  - How does your solution scale as input size grows?
+  - Can you improve it?
+
+- **Learn from Others:**
+  - Read other solutions and explanations.
+  - Try to re-implement them yourself.
+
+---
+
+## 5. Step-by-Step Solution
+
+### Step 1: Initialize
+- Create a dummy head node for the result list.
+- Set a pointer `current` to dummy head.
+- Set `carry` to 0.
+
+### Step 2: Traverse Lists
+- While either list has nodes or carry is non-zero:
+  - Get value from each list (0 if list is done).
+  - Add values and carry.
+  - Set `current->next` to new node with digit (sum % 10).
+  - Update carry (sum / 10).
+  - Move pointers forward.
+
+### Step 3: Return Result
+- Return `dummyHead->next` as the result list.
+
+#### Example Walkthrough
+```
+l1: 2 → 4 → 3
+l2: 5 → 6 → 4
+Step-by-step:
+2+5=7, carry=0 → 7
+4+6=10, carry=1 → 0
+3+4+1=8, carry=0 → 8
+Result: 7 → 0 → 8
+```
+
+---
+
+## 6. C Implementation Tips
+- Define a `ListNode` struct.
+- Use a dummy head to simplify code.
+- Handle memory allocation for new nodes.
+- Free memory if needed.
+
+---
+
+## 7. Edge Cases
+- Lists of different lengths.
+- Carry at the end (e.g., 5+5=10).
+- All zeros.
+- Empty lists (should not happen per constraints).
+
+---
+
+## 8. Summary
+- Traverse both lists, add digits and carry.
+- Use dummy head for result list.
+- Handle carry at the end.
+
+---
+
+## 9. Practice and Skill Improvement
+- Try with different inputs.
+- Implement and test your code.
+- Read and understand other people's solutions.
+- Reflect on what you learned and how you can apply it to other problems.
+
+---
+
+## 10. References
+- LeetCode Problem: https://leetcode.com/problems/add-two-numbers/description/
+- C Linked List Example: https://leetcode.com/problems/add-two-numbers/solutions/2469222/c-linked-list-solution/
