@@ -1,0 +1,24 @@
+flowchart TD
+    Start([Start Circular Dequeue]) --> CheckEmpty{Is Queue Empty?}
+    
+    CheckEmpty -->|Yes| UnderflowError[Return Error:<br/>Queue Underflow]
+    CheckEmpty -->|No| SaveValue[value = items front]
+    
+    SaveValue --> CheckLast{front == rear?<br/>Last element?}
+    
+    CheckLast -->|Yes| ResetQueue[front = -1<br/>rear = -1]
+    CheckLast -->|No| CalcFront[front = front + 1 mod capacity]
+    
+    ResetQueue --> DecrementSize[Decrement size]
+    CalcFront --> DecrementSize
+    
+    DecrementSize --> ReturnValue[Return value]
+    
+    UnderflowError --> End([End])
+    ReturnValue --> End
+    
+    style Start fill:#90EE90
+    style End fill:#FFB6C1
+    style UnderflowError fill:#FF6B6B
+    style ReturnValue fill:#4ECDC4
+    style CalcFront fill:#FFE66D

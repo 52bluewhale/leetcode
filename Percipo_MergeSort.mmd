@@ -1,0 +1,32 @@
+flowchart TD
+    Start([Start MergeSort]) --> Check{"left < right?"}
+    Check -->|No| Return([Return - Base Case])
+    Check -->|Yes| CalcMid["mid = left + (right - left) / 2"]
+    CalcMid --> SortLeft["MergeSort(left, mid)"]
+    SortLeft --> SortRight["MergeSort(mid + 1, right)"]
+    SortRight --> CallMerge[Call Merge Function]
+    CallMerge --> Return
+
+    MergeStart([Start Merge]) --> CreateTemp[Create temp arrays]
+    CreateTemp --> CopyData[Copy data to temp arrays]
+    CopyData --> InitPointers["i = 0, j = 0, k = left"]
+    InitPointers --> CompareLoop{"i < n1 AND j < n2?"}
+    CompareLoop -->|No| CopyLeft{Remaining in left?}
+    CompareLoop -->|Yes| Compare{"leftArr[i] <= rightArr[j]?"}
+    Compare -->|Yes| CopyLeftElem["arr[k] = leftArr[i], i++"]
+    Compare -->|No| CopyRightElem["arr[k] = rightArr[j], j++"]
+    CopyLeftElem --> IncK["k++"]
+    CopyRightElem --> IncK
+    IncK --> CompareLoop
+    CopyLeft -->|Yes| CopyLeftRem[Copy remaining left elements]
+    CopyLeft -->|No| CopyRight{Remaining in right?}
+    CopyLeftRem --> CopyRight
+    CopyRight -->|Yes| CopyRightRem[Copy remaining right elements]
+    CopyRight -->|No| MergeEnd([End Merge])
+    CopyRightRem --> MergeEnd
+
+    %% --- DARK MODE STYLE EVERY NODE ---
+    classDef dark fill:#000000,stroke:#666666,color:#FFFFFF
+
+    class Start,Return,CalcMid,SortLeft,SortRight,CallMerge dark
+    class MergeStart,MergeEnd,CreateTemp,CopyData,InitPointers,CompareLoop,CopyLeft,CopyRight,Compare,CopyLeftElem,CopyRightElem,IncK,CopyLeftRem,CopyRightRem dark

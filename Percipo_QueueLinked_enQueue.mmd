@@ -1,0 +1,25 @@
+flowchart TD
+    Start([Start Linked Enqueue]) --> AllocNode[Allocate new node]
+    
+    AllocNode --> CheckAlloc{Allocation<br/>successful?}
+    
+    CheckAlloc -->|No| MemoryError[Return Error:<br/>Memory allocation failed]
+    CheckAlloc -->|Yes| SetData[node->data = value<br/>node->next = NULL]
+    
+    SetData --> CheckEmpty{Is Queue Empty?}
+    
+    CheckEmpty -->|Yes| InitBoth[front = node<br/>rear = node]
+    CheckEmpty -->|No| AddRear[rear->next = node<br/>rear = node]
+    
+    InitBoth --> IncrementSize[Increment size]
+    AddRear --> IncrementSize
+    
+    IncrementSize --> Success[Return Success]
+    
+    MemoryError --> End([End])
+    Success --> End
+    
+    style Start fill:#90EE90
+    style End fill:#FFB6C1
+    style MemoryError fill:#FF6B6B
+    style Success fill:#4ECDC4

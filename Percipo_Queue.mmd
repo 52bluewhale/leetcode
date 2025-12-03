@@ -1,0 +1,41 @@
+flowchart TD
+    Start([Start]) --> Operation{Choose Operation}
+    
+    Operation -->|Enqueue| CheckFull{Is Queue Full?}
+    Operation -->|Dequeue| CheckEmpty1{Is Queue Empty?}
+    Operation -->|Peek| CheckEmpty2{Is Queue Empty?}
+    
+    %% Enqueue Flow
+    CheckFull -->|Yes| OverflowError[Return Error:<br/>Queue Overflow]
+    CheckFull -->|No| AddElement[Add element to rear]
+    AddElement --> UpdateRear[Update rear pointer]
+    UpdateRear --> IncrementSize[Increment size]
+    IncrementSize --> Success1[Return Success]
+    
+    %% Dequeue Flow
+    CheckEmpty1 -->|Yes| UnderflowError[Return Error:<br/>Queue Underflow]
+    CheckEmpty1 -->|No| SaveValue[Save front element value]
+    SaveValue --> RemoveFront[Remove front element]
+    RemoveFront --> UpdateFront[Update front pointer]
+    UpdateFront --> DecrementSize[Decrement size]
+    DecrementSize --> ReturnValue[Return saved value]
+    
+    %% Peek Flow
+    CheckEmpty2 -->|Yes| EmptyError[Return Error:<br/>Queue is Empty]
+    CheckEmpty2 -->|No| ReturnFront[Return front element<br/>without removing]
+    
+    OverflowError --> End([End])
+    Success1 --> End
+    UnderflowError --> End
+    ReturnValue --> End
+    EmptyError --> End
+    ReturnFront --> End
+    
+    style Start fill:#90EE90
+    style End fill:#FFB6C1
+    style OverflowError fill:#FF6B6B
+    style UnderflowError fill:#FF6B6B
+    style EmptyError fill:#FF6B6B
+    style Success1 fill:#4ECDC4
+    style ReturnValue fill:#4ECDC4
+    style ReturnFront fill:#4ECDC4

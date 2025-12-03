@@ -1,0 +1,24 @@
+flowchart TD
+    Start([Start Circular Enqueue]) --> CheckFull{Is Queue Full?}
+    
+    CheckFull -->|Yes| OverflowError[Return Error:<br/>Queue Overflow]
+    CheckFull -->|No| CheckFirst{First element?}
+    
+    CheckFirst -->|Yes| InitFront[Set front = 0]
+    CheckFirst -->|No| SkipInit[Skip initialization]
+    
+    InitFront --> CalcRear[rear = rear + 1 mod capacity]
+    SkipInit --> CalcRear
+    
+    CalcRear --> AddElement[items rear = value]
+    AddElement --> IncrementSize[Increment size]
+    IncrementSize --> Success[Return Success]
+    
+    OverflowError --> End([End])
+    Success --> End
+    
+    style Start fill:#90EE90
+    style End fill:#FFB6C1
+    style OverflowError fill:#FF6B6B
+    style Success fill:#4ECDC4
+    style CalcRear fill:#FFE66D
